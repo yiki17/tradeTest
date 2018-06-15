@@ -3,39 +3,53 @@
     <div class="search">
       <input class="searchInput" type="text" v-model="searchVal" @confirm="search" :focus="true" confirm-type="search" placeholder="搜索内容">
     </div>
-    <div class="history" v-if="searchArr.length>0">
+    <div class="history" v-if="historyArr.length>0 && list.length == 0">
       <div class="historyText">搜索历史</div>
       <div class="historyBadge">
-        <div class="tag" v-for="(tag,idx) in searchArr" :key="idx">{{tag}}</div>
+        <div class="tag" v-for="(tag,idx) in historyArr" :key="idx">{{tag}}</div>
       </div>
     </div>
-
+    <div v-if="list.length>0"><item-list :list="list"></item-list></div>
   </div>
 </template>
 
 <script>
+import itemList from '@/components/itemlist/itemlist'
 export default {
+  components: {
+    itemList
+  },
   data () {
     return {
       searchVal: '',
-      searchArr: []
+      historyArr: [],
+      list: []
     }
   },
   mounted () {
-    this.searchArr = wx.getStorageSync('searchArr')
+    this.list = []
+    this.searchVal = ''
+    this.historyArr = wx.getStorageSync('historyArr')
   },
   methods: {
     search (res) {
       if (!this.searchVal) {
+        this.list = []
         return
       }
-      if (!this.searchArr) {
-        this.searchArr = []
+      if (!this.historyArr) {
+        this.historyArr = []
       }
-      let setArr = new Set(this.searchArr)
+      let setArr = new Set(this.historyArr)
       setArr.add(this.searchVal)
-      this.searchArr = Array.from(setArr)
-      wx.setStorageSync('searchArr', this.searchArr)
+      this.historyArr = Array.from(setArr)
+      wx.setStorageSync('historyArr', this.historyArr)
+      this.getList()
+    },
+    getList () {
+      let list = this.$store.state.list
+      this.list = list.filter((item) => item.cn_title.indexOf(this.searchVal) !== -1)
+      console.log(this.list)
     }
   }
 }

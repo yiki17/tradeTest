@@ -35,6 +35,7 @@ export default {
     display flex
     flex-wrap: wrap
     margin-top 10px
+    background #fff
     .item
       flex 0 0 50%
       width 50%
