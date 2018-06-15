@@ -95,6 +95,7 @@ export default {
       } else {
         console.log(res)
       }
+      this.$store.commit('changeList', this.list)
       wx.hideNavigationBarLoading()
     }
   },

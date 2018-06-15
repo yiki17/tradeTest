@@ -9,6 +9,7 @@
         <div class="tag" v-for="(tag,idx) in searchArr" :key="idx">{{tag}}</div>
       </div>
     </div>
+
   </div>
 </template>
 
