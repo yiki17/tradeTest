@@ -1,12 +1,12 @@
 <script>
+import config from './config'
+import { get } from './util'
 export default {
-  created () {
+  async created () {
     // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    console.log('app created and cache logs by setStorageSync')
+    let url = config.host + '/weapp/demo'
+    const res = await get(url)
+    console.log(res.data.data.msg)
   }
 }
 </script>
