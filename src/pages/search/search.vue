@@ -6,7 +6,7 @@
     <div class="history" v-if="historyArr.length>0 && list.length == 0">
       <div class="historyText">搜索历史</div>
       <div class="historyBadge">
-        <div class="tag" v-for="(tag,idx) in historyArr" :key="idx">{{tag}}</div>
+        <div class="tag" @click="changeList(tag)" v-for="(tag,idx) in historyArr" :key="idx">{{tag}}</div>
       </div>
     </div>
     <div v-if="list.length>0"><item-list :list="list"></item-list></div>
@@ -50,6 +50,10 @@ export default {
       let list = this.$store.state.list
       this.list = list.filter((item) => item.cn_title.indexOf(this.searchVal) !== -1)
       console.log(this.list)
+    },
+    changeList (newVal) {
+      this.searchVal = newVal
+      this.getList()
     }
   }
 }
