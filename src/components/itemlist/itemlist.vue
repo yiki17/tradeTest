@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="list">
-      <div class="item" v-for="(item,idx) in list" :key="idx">
+      <div class="item" v-for="(item,idx) in list" :key="idx" @click="goToDetail(item)">
         <img mode="aspectFit" class="item-image" :src="item.image" alt="">
         <p class="cn">{{item.cn_title}}</p>
         <p class="en">{{item.en_title}}</p>
@@ -19,6 +19,13 @@ export default {
       default () {
         return []
       }
+    }
+  },
+  methods: {
+    goToDetail (item) {
+      wx.navigateTo({
+        url: '/pages/detail/main?id=' + item.id
+      })
     }
   },
   filter: {
