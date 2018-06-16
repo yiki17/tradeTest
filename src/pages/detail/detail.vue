@@ -26,6 +26,9 @@ export default {
       let detail = await get(url)
       this.detail = detail.data.data
       console.log(this.detail)
+      wx.setNavigationBarTitle({
+        title: this.detail.cn_title
+      })
     }
   }
 }
