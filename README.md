@@ -18,6 +18,7 @@ npm run dev
 2.点击搜索进入搜索页面，通过vuex进行商品信息的管理，搜索筛选到的是根据vuex中的商品信息。利用storage记录搜索历史。
 3.点击商品进入商品页面，通过查看单个产品详情接口获取到相关信息显示在页面上。
 4.我的页面 点击授权显示头像和相关openId，控制台打印个人详细信息。
+5.增加手机获取验证码，点击验证。
 
 # build for production and view the bundle analyzer report
 npm run build --report
