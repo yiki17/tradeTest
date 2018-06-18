@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { get, isPhoneAvailable } from '@/util'
+import { get } from '@/util'
 import config from '@/config'
 export default {
   props: {
@@ -49,13 +49,13 @@ export default {
       }
       let url = config.host + '/weapp/sendcode'
       if (this.phone) {
-        if (!isPhoneAvailable(this.phone)) {
-          wx.showModal({
-            title: '手机号错误',
-            content: '格式不正确'
-          })
-          return
-        }
+        // if (!isPhoneAvailable(this.phone)) {
+        //   wx.showModal({
+        //     title: '手机号错误',
+        //     content: '格式不正确'
+        //   })
+        //   return
+        // }
         let res = await get(url, {
           phone: this.phone
         })
