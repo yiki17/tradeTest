@@ -33,4 +33,11 @@ router.get('/message', controllers.message.get)
 router.post('/message', controllers.message.post)
 
 router.get('/demo', controllers.demo)
+
+router.get('/getopenid', controllers.getopenid)
+
+router.get('/sendcode', controllers.sendcode)
+
+router.get('/checkcode', controllers.checkcode)
+
 module.exports = router
